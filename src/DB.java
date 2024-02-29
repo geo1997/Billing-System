@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -48,8 +49,11 @@ public class DB {
 	{
 		Connection conn=DBConnection();
 		try {
-			Statement statement = conn.createStatement();
-			int status=statement.executeUpdate("UPDATE stock set Detail = '"+detail+"', Company = '"+comp+"', Quantity = "+quan+" WHERE ProductID = '"+id+"';");
+			PreparedStatement statement = conn.prepareStatement("UPDATE stock set Detail = ?"+", Company = ?"+", Quantity = "+quan+" WHERE ProductID = ?"+";");
+			statement.setString(1, detail);
+			statement.setString(2, comp);
+			statement.setString(3, id);
+			int status=statement.execute();
 			if(status==1)
 		    	JOptionPane.showMessageDialog(null,  "Product updted");
 		    else
@@ -67,8 +71,9 @@ public class DB {
 	{
 		Connection conn=DBConnection();
 		try {
-			Statement statement = conn.createStatement();
-			int status=statement.executeUpdate("DELETE from stock WHERE ProductID = '"+id+"';");
+			PreparedStatement statement = conn.prepareStatement("DELETE from stock WHERE ProductID = ?"+";");
+			statement.setString(1, id);
+			int status=statement.execute();
 		    if(status==1)
 		    	JOptionPane.showMessageDialog(null,  "Product deleted");
 		    else
@@ -85,8 +90,9 @@ public class DB {
 	{
 		Connection conn=DBConnection();
 		try {
-			Statement statement = conn.createStatement();
-			ResultSet rs = statement.executeQuery("Select * from stock WHERE ProductID = '"+id+"';");
+			PreparedStatement statement = conn.prepareStatement("Select * from stock WHERE ProductID = ?"+";");
+			statement.setString(1, id);
+			ResultSet rs = statement.execute();
 			if (!rs.next()) 
 				JOptionPane.showMessageDialog(null,"No product found with this id!");
 			else
@@ -103,8 +109,9 @@ public class DB {
 	{
 		Connection conn=DBConnection();
 		try {
-			Statement statement = conn.createStatement();
-			ResultSet rs = statement.executeQuery("Select * from users WHERE Email = '"+email+"';");
+			PreparedStatement statement = conn.prepareStatement("Select * from users WHERE Email = ?"+";");
+			statement.setString(1, email);
+			ResultSet rs = statement.execute();
 			if (!rs.next()) 
 				JOptionPane.showMessageDialog(null,"No cashier found with this email!");
 			else
@@ -122,8 +129,10 @@ public class DB {
 		boolean login=false;
 		Connection conn=DBConnection();
 		try {
-			Statement statement = conn.createStatement();
-			ResultSet rs = statement.executeQuery("Select * from users WHERE Email = '"+email+"' and Password = '"+pass+"';");
+			PreparedStatement statement = conn.prepareStatement("Select * from users WHERE Email = ?"+" and Password = ?"+";");
+			statement.setString(1, email);
+			statement.setString(2, pass);
+			ResultSet rs = statement.execute();
 			if (!rs.next()) 
 				login=false;
 			else
@@ -141,8 +150,10 @@ public class DB {
 	{
 		Connection conn=DBConnection();
 		try {
-			Statement statement = conn.createStatement();
-			statement.executeUpdate("INSERT INTO users VALUES ('"+user+"','"+pass+"');");
+			PreparedStatement statement = conn.prepareStatement("INSERT INTO users VALUES (?"+",?"+");");
+			statement.setString(1, user);
+			statement.setString(2, pass);
+			statement.execute();
 			JOptionPane.showMessageDialog(null, "Cashier added to database");
 			conn.close();
 		} catch (SQLException e) {
@@ -155,8 +166,10 @@ public class DB {
 	{
 		Connection conn=DBConnection();
 		try {
-			Statement statement = conn.createStatement();
-			int status=statement.executeUpdate("DELETE from users WHERE Email = '"+user+"' AND Password = '"+pass+"';");
+			PreparedStatement statement = conn.prepareStatement("DELETE from users WHERE Email = ?"+" AND Password = ?"+";");
+			statement.setString(1, user);
+			statement.setString(2, pass);
+			int status=statement.execute();
 			 if(status==1)
 			    	JOptionPane.showMessageDialog(null,  "Cashier deleted");
 			    else
@@ -175,8 +188,9 @@ public class DB {
 		String rt="";
 		try {
 			int quan;
-			Statement statement = conn.createStatement();
-			ResultSet rs = statement.executeQuery("Select * from stock WHERE ProductID = '"+id+"';");
+			PreparedStatement statement = conn.prepareStatement("Select * from stock WHERE ProductID = ?"+";");
+			statement.setString(1, id);
+			ResultSet rs = statement.execute();
 			if (!rs.next()) 
 				rt="nill";
 			else{
@@ -204,12 +218,16 @@ public class DB {
 		Connection conn=DBConnection();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		Date date = new Date();
-		String d=dateFormat.format(date); 
 		try {
-			Statement statement = conn.createStatement();
+			PreparedStatement statement = conn.prepareStatement("INSERT INTO sale VALUES (?"+",?"+",?"+",?"+","+data[x+4]+",?"+");");
 			for(int x=0;x<data.length;x=x+5)
 			{
-				statement.executeUpdate("INSERT INTO sale VALUES ('"+data[x]+"','"+comp.get(0)+"','"+d+"','"+data[x+3]+"',"+data[x+4]+",'"+name+"');");
+				statement.setString(1, data[x] + "");
+				statement.setString(2, comp.get(0));
+				statement.setString(3, dateFormat.format(date));
+				statement.setString(4, data[x+3] + "");
+				statement.setString(5, name);
+				statement.execute();
 				comp.remove(0);
 			}
 			conn.close();
@@ -282,8 +300,9 @@ public class DB {
 		String rt="";
 		try {
 			int quan;
-			Statement statement = conn.createStatement();
-			ResultSet rs = statement.executeQuery("Select * from stock WHERE ProductID = '"+id+"';");
+			PreparedStatement statement = conn.prepareStatement("Select * from stock WHERE ProductID = ?"+";");
+			statement.setString(1, id);
+			ResultSet rs = statement.execute();
 			if (!rs.next()) 
 				rt="nill";
 			else{
@@ -312,8 +331,9 @@ public class DB {
 		Connection conn=DBConnection();
 		ArrayList<String> data=new ArrayList<String>();
 		try {
-			Statement statement = conn.createStatement();
-			ResultSet rs = statement.executeQuery("Select * from stock WHERE ProductID = '"+id+"';");
+			PreparedStatement statement = conn.prepareStatement("Select * from stock WHERE ProductID = ?"+";");
+			statement.setString(1, id);
+			ResultSet rs = statement.execute();
 			if (rs.next()) 
 			{
 				data.add(rs.getString("Detail"));
@@ -334,8 +354,9 @@ public class DB {
 	{
 		Connection conn=DBConnection();
 		try {
-			Statement statement = conn.createStatement();
-			ResultSet rs = statement.executeQuery("Select * from stock WHERE ProductID = '"+id+"';");
+			PreparedStatement statement = conn.prepareStatement("Select * from stock WHERE ProductID = ?"+";");
+			statement.setString(1, id);
+			ResultSet rs = statement.execute();
 			int q=0;
 			if(rs.next())
 			{
