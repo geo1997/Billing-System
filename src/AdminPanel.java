@@ -120,7 +120,7 @@ public class AdminPanel extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println("Selected: " + e.getActionCommand());   
-		if(e.getActionCommand().equals("Add Product"))
+		if("Add Product".equals(e.getActionCommand()))
 		{
 			System.out.println(panels.get(cPanel));
 			this.remove(panels.get(cPanel));
@@ -131,7 +131,7 @@ public class AdminPanel extends JFrame implements ActionListener {
 			cPanel=0;
 			this.setTitle("Add Product");
 		}
-		else if(e.getActionCommand().equals("Update Product"))
+		else if("Update Product".equals(e.getActionCommand()))
 		{
 			this.remove(panels.get(cPanel));
 			this.revalidate();
@@ -141,7 +141,7 @@ public class AdminPanel extends JFrame implements ActionListener {
 			cPanel=1;
 			this.setTitle("Update Product");
 		}
-		else if(e.getActionCommand().equals("Delete Product"))
+		else if("Delete Product".equals(e.getActionCommand()))
 		{
 			this.remove(panels.get(cPanel));
 			this.revalidate();
@@ -151,7 +151,7 @@ public class AdminPanel extends JFrame implements ActionListener {
 			cPanel=2;
 			this.setTitle("Delete Product");
 		}
-		else if(e.getActionCommand().equals("Add Cashier"))
+		else if("Add Cashier".equals(e.getActionCommand()))
 		{
 			this.remove(panels.get(cPanel));
 			this.revalidate();
@@ -161,7 +161,7 @@ public class AdminPanel extends JFrame implements ActionListener {
 			cPanel=3;
 			this.setTitle("Add Cashier");
 		}
-		else if(e.getActionCommand().equals("Delete Cashier"))
+		else if("Delete Cashier".equals(e.getActionCommand()))
 		{
 			this.remove(panels.get(cPanel));
 			this.revalidate();
@@ -171,7 +171,7 @@ public class AdminPanel extends JFrame implements ActionListener {
 			cPanel=4;
 			this.setTitle("Delete Cashier");
 		}
-		else if(e.getActionCommand().equals("Show Stock"))
+		else if("Show Stock".equals(e.getActionCommand()))
 		{
 			this.remove(panels.get(cPanel));
 			getContentPane().add(panels.get(5));
@@ -181,7 +181,7 @@ public class AdminPanel extends JFrame implements ActionListener {
 			cPanel=5;
 			this.setTitle("Show Stock");
 		}
-		else if(e.getActionCommand().equals("Search Product"))
+		else if("Search Product".equals(e.getActionCommand()))
 		{
 			this.remove(panels.get(cPanel));
 			getContentPane().add(panels.get(6));
@@ -191,7 +191,7 @@ public class AdminPanel extends JFrame implements ActionListener {
 			cPanel=6;
 			this.setTitle("Search Product");
 		}
-		else if(e.getActionCommand().equals("Search Cashier"))
+		else if("Search Cashier".equals(e.getActionCommand()))
 		{
 			this.remove(panels.get(cPanel));
 			getContentPane().add(panels.get(7));
@@ -201,7 +201,7 @@ public class AdminPanel extends JFrame implements ActionListener {
 			cPanel=7;
 			this.setTitle("Search Cashier");
 		}
-		else if(e.getActionCommand().equals("Print Sale"))
+		else if("Print Sale".equals(e.getActionCommand()))
 		{
 			this.remove(panels.get(cPanel));
 			getContentPane().add(panels.get(8));
@@ -211,7 +211,7 @@ public class AdminPanel extends JFrame implements ActionListener {
 			cPanel=8;
 			this.setTitle("Print Sale");
 		}
-		else if(e.getActionCommand().equals("Logout"))
+		else if("Logout".equals(e.getActionCommand()))
 		{
 			this.dispose();
 		}

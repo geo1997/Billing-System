@@ -64,7 +64,7 @@ public class addProduct extends JPanel {
 		JButton btnAddProduct = new JButton("Add Product");
 		btnAddProduct.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(quanField.getText().equals("")||idField.getText().equals(""))
+				if("".equals(quanField.getText())||"".equals(idField.getText()))
 				{
 					error.setText(err);
 				}

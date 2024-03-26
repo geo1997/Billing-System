@@ -42,7 +42,7 @@ public class deleteProduct extends JPanel {
 		btnDeleteProduct.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if(idField.getText().equals(""))
+				if("".equals(idField.getText()))
 				{
 					error.setText(err);
 				}

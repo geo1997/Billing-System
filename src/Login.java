@@ -114,12 +114,12 @@ public class Login extends JFrame {
 				username=usernameField.getText().toString().toLowerCase();
 				passwordField.setText("");
 				usernameField.setText("");
-				if(password.equals("")||username.equals(""))
+				if("".equals(password)||"".equals(username))
 					error.setText(errorText);
 				else
 				{
 					error.setText("");
-					if(username.equals("admin"))
+					if("admin".equals(username))
 					{
 						if(DB.varifyLogin(username,password))
 							{

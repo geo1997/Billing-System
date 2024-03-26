@@ -101,7 +101,7 @@ public class Invoice extends JPanel {
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(UnitPrice.getText().equals("")||pQuan.getText().equals("")||pID.getText().equals(""))
+				if("".equals(UnitPrice.getText())||"".equals(pQuan.getText())||"".equals(pID.getText()))
 				{
 					error.setText("Enter required data");
 					return;
@@ -121,12 +121,12 @@ public class Invoice extends JPanel {
 				detail=DB.searchPDetail(id,(int)q);
 				String str[]=detail.split("%");
 				detail=str[0];
-				if(detail.equals("nill"))
+				if("nill".equals(detail))
 				{
 					error.setText("Invalid product id!");
 					return;
 				}
-				else if(detail.equals("item is out of stock"))
+				else if("item is out of stock".equals(detail))
 				{
 					error.setText(detail);
 					return;

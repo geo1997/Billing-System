@@ -100,7 +100,7 @@ public class updateProduct extends JPanel {
 		btnUpdateProduct = new JButton("Update Product");
 		btnUpdateProduct.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(quanField.getText().equals("")||idField.getText().equals(""))
+				if("".equals(quanField.getText())||"".equals(idField.getText()))
 				{
 					error.setText(err);
 				}

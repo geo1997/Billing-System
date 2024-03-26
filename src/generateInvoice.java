@@ -78,7 +78,7 @@ public class generateInvoice extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getActionCommand().equals("Search Product"))
+		if("Search Product".equals(e.getActionCommand()))
 		{
 			this.remove(panels.get(jp));
 			this.revalidate();
@@ -89,7 +89,7 @@ public class generateInvoice extends JFrame implements ActionListener{
 			this.setTitle("Search Product");
 			
 		}
-		else if(e.getActionCommand().equals("Generate Invoice"))
+		else if("Generate Invoice".equals(e.getActionCommand()))
 		{
 			this.remove(panels.get(jp));
 			this.revalidate();
@@ -100,7 +100,7 @@ public class generateInvoice extends JFrame implements ActionListener{
 			this.setTitle("Generate Invoice");
 		}
 		
-		else if(e.getActionCommand().equals("Logout"))
+		else if("Logout".equals(e.getActionCommand()))
 		{
 			this.dispose();
 		}

@@ -224,7 +224,7 @@ public class DB {
 		String q;
 		ArrayList<String> r=new ArrayList<String>();
 		
-		if(comp.equals("All"))
+		if("All".equals(comp))
 			q="Select * from sale WHERE Date = '"+date+"';";
 		else
 			q="Select * from sale WHERE Date = '"+date+"' AND Company = '"+comp+"';";
@@ -252,7 +252,7 @@ public class DB {
 	{
 		String q;
 		ArrayList<String> r=new ArrayList<String>();
-		if(comp.equals("All"))	
+		if("All".equals(comp))	
 			q="Select * from stock;";
 		else
 			q="Select * from stock WHERE Company = '"+comp+"';";
